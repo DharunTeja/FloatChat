@@ -1,0 +1,19 @@
+import uuid
+from datetime import datetime
+from sqlalchemy import Column, String, Integer, Float, JSON, DateTime
+from backend.database.connection import Base
+
+class Dataset(Base):
+    __tablename__ = "datasets"
+
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    dataset_name = Column(String, nullable=False)
+    dataset_type = Column(String, nullable=False) # .nc, .csv, .json
+    file_path = Column(String, nullable=False)
+    file_size = Column(String, nullable=False)
+    sha256_hash = Column(String, unique=True, index=True, nullable=False)
+    upload_date = Column(DateTime, default=datetime.utcnow)
+    uploaded_by = Column(String, nullable=False)
+    verification_status = Column(String, default="Verified") # Verified, Pending, Failed
+    meta_data = Column(JSON, nullable=True) # Lat, Long, Temp, Salinity, Depth
+    status = Column(String, default="Active")

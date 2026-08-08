@@ -1,0 +1,37 @@
+# GitIgnore for FloatChat project
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Virtual environments
+venv/
+.venv/
+backend/venv/
+
+# Dependencies and build folders
+node_modules/
+dist/
+build/
+
+# Python caches
+__pycache__/
+*.pyc
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Log files
+*.log
+
+# Editor & IDE configs
+.vscode/
+.idea/
+
+# OS temporary files
+.DS_Store
+Thumbs.db
+Desktop.ini
