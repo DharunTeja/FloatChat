@@ -1,6 +1,10 @@
 import os
 from pydantic_settings import BaseSettings
 
+# Determine absolute path to .env file relative to this settings file
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ENV_PATH = os.path.join(BASE_DIR, ".env")
+
 class Settings(BaseSettings):
     PROJECT_NAME: str = "FloatChat Enterprise API"
     VERSION: str = "2.4.0"
@@ -28,6 +32,6 @@ class Settings(BaseSettings):
     
     class Config:
         case_sensitive = True
-        env_file = "backend/.env"
+        env_file = ENV_PATH
 
 settings = Settings()
