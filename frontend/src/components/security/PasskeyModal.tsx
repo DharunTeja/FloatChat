@@ -103,8 +103,8 @@ export const PasskeyModal: React.FC<PasskeyModalProps> = ({ onSuccess, onCancel 
     setErrorMsg('');
 
     try {
-      // Backend API validation
-      const response = await fetch('http://localhost:8000/auth/verify-passkey', {
+      const API_BASE_URL = (import.meta as any).env.VITE_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${API_BASE_URL}/auth/verify-passkey`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ passkey })
