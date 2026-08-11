@@ -35,7 +35,7 @@ def login(payload: LoginRequest, request: Request, db: Session = Depends(get_db)
         )
         
     # MFA Verification Check if Admin
-    if user.role == "Admin" and payload.mfa_code and payload.mfa_code != "123456":
+    if user.role == "Admin" and (not payload.mfa_code or payload.mfa_code != "123456"):
         sec_evt = SecurityEvent(
             event_type="MFA Failure",
             severity="High",

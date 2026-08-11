@@ -48,6 +48,7 @@ def update_user(user_id: str, payload: UserUpdate, db: Session = Depends(get_db)
         raise HTTPException(status_code=404, detail="User not found")
 
     if payload.name: user.name = payload.name
+    if payload.email: user.email = payload.email
     if payload.role: user.role = payload.role
     if payload.is_active is not None: user.is_active = payload.is_active
 
