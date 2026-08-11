@@ -92,7 +92,7 @@ def get_me(current_user: User = Depends(get_current_user)):
 def verify_passkey(payload: dict, request: Request, db: Session = Depends(get_db)):
     client_ip = request.client.host if request.client else "127.0.0.1"
     passkey = payload.get("passkey", "")
-    if passkey == settings.SECURITY_LOG_PASSKEY:
+    if verify_password(passkey, settings.SECURITY_LOG_PASSKEY):
         audit = AuditLog(
             username="System Administrator",
             role="Admin",
